@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Bravintel Security</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a2f4d7e5cf.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f9f9f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            background: #003366;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .flag {
+            margin-left: 8px;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .menu li:hover {
+            background: #0055a5;
+        }
+
+        .hamburger {
+            display: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        @media(max-width:900px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .search-bar {
+                order: 2;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        .hero.large {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #003366;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero.large::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin: 15px 0;
+        }
+
+        .cta {
+            background: #0077cc;
+            color: #fff;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin: 20px auto;
+        }
+
+        .cta:hover {
+            background: #005fa3;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #003366;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        form label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            font-weight: 600;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background: #003366;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #0055a5;
+        }
+
+        footer {
+            background: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        iframe {
+            border: 0;
+            margin-top: 20px;
+        }
+
+        .social-bar {
+            position: fixed;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .social-bar a {
+            color: #003366;
+            font-size: 1.5rem;
+        }
+
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="logo" href="#top">Bravintel <span class="flag">🇨🇦</span></a>
+        <div class="search-bar"><input type="text" placeholder="Search..."></div>
+        <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        <ul class="menu" id="menu">
+            <li><a href="#services">Security Services</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#login">Employee Login</a></li>
+            <li><a href="#" onclick="toggleLanguage()">EN/FR</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero large" id="top">
+        <div class="hero-content">
+            <h1 id="hero-title">Bravintel Security</h1>
+            <p id="hero-sub">Professional • Trusted • Local</p>
+            <a href="#contact" class="cta" id="cta-btn">Contact Us</a>
+        </div>
+    </div>
+
+    <section id="services">
+        <h2 id="services-title">Security Services</h2>
+        <p id="services-desc">Discover our professional guard, patrol, and event security solutions.</p>
+    </section>
+
+    <section id="industries">
+        <h2 id="industries-title">Industries</h2>
+        <p id="industries-desc">Serving Healthcare, Corporate, Retail, Aviation, Industrial & more.</p>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2>Our Team & Flyers</h2>
+        <img src="images/team-photo.png0.jpg" alt="Downtown Winnipeg">
+        <img src="images/team-photo.png1.png" alt="Bravintel Team Photo">
+        <img src="images/team-photo.png2.png" alt="Bravintel Flyer">
+    </section>
+
+    <section id="contact">
+        <h2 id="contact-title">Contact Us</h2>
+        <form>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your Name" required>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Your Email" required>
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+            <button type="submit" id="contact-btn">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p><a href="#services">Services</a> | <a href="#contact">Contact</a></p>
+        <p>© 2025 Bravintel Security | 400 Webb Pl, Winnipeg MB R3B 3J3 | 📞 <a href="tel:2048045988">204-804-5988</a>
+        </p>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2935.539370321327!2d-97.14350918453214!3d49.895077279398066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea71520b7c29c7%3A0x7251ccf3e102e80!2s400%20Webb%20Pl%2C%20Winnipeg%2C%20MB%20R3B%203J3!5e0!3m2!1sen!2sca!4v1688040700428!5m2!1sen!2sca"
+            width="100%" height="200" allowfullscreen="" loading="lazy"></iframe>
+    </footer>
+
+    <div class="social-bar">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+        }
+
+        let lang = "en";
+        function toggleLanguage() {
+            lang = lang === "en" ? "fr" : "en";
+            document.getElementById("hero-title").textContent = lang === "en" ? "Bravintel Security" : "Sécurité Bravintel";
+            document.getElementById("hero-sub").textContent = lang === "en" ? "Professional • Trusted • Local" : "Professionnel • Fiable • Local";
+            document.getElementById("cta-btn").textContent = lang === "en" ? "Contact Us" : "Contactez-nous";
+            document.getElementById("services-title").textContent = lang === "en" ? "Security Services" : "Services de Sécurité";
+            document.getElementById("services-desc").textContent = lang === "en" ? "Discover our professional guard, patrol, and event security solutions." : "Découvrez nos solutions de gardiennage, patrouille et événements.";
+            document.getElementById("industries-title").textContent = lang === "en" ? "Industries" : "Secteurs";
+            document.getElementById("industries-desc").textContent = lang === "en" ? "Serving Healthcare, Corporate, Retail, Aviation, Industrial & more." : "Secteurs : Santé, Entreprises, Commerce, Aviation, Industrie et plus.";
+            document.getElementById("contact-title").textContent = lang === "en" ? "Contact Us" : "Contactez-nous";
+            document.getElementById("contact-btn").textContent = lang === "en" ? "Send" : "Envoyer";
+        }
+    </script>
+</body>
+
+</html>
